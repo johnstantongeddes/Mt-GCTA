@@ -6,12 +6,12 @@ trait=$3
 sample=$4
 SNPpercent=$5
 
+# Make directory for trait
+mkdir $trait 
+cd $trait
 
 for i in {1..100}
 do
-    mkdir $trait 
-    cd $trait
-
 	# Extract SNPs from PLINK files using --thin option to select random sample of SNPs specified at command-line 
 	# e.g. 250,000/5,672,923 = 0.044 
 	for j in T U 1 2 3 4 5 6 7 8
@@ -41,6 +41,5 @@ do
 
 	# Read .hsq file and cat estimate of heritability to table
     Rscript ../hsq_report.R $trait $sample $i
-    cd ..
 done
 
